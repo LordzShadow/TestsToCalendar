@@ -30,6 +30,7 @@ def get_homework(source):
     source = BeautifulSoup(source.text, features="html.parser").findAll('div', {'class': 'todo_container'})
     tasks = []
     for div in source:
+        desc = None
         date_in_tick = int(div.attrs['data-date_ts'])
         date = div.attrs['data-date']
         subject = div.find('a', {"class": "subject_name"})
@@ -73,7 +74,7 @@ def add_test(service, task):
     # Event dict for Google API
     event = {
         'summary': str(task.text),
-        'description': str(task.desc),
+        'description': str(task.desc) if task.desc is not None else "",
         'start': {
             "date": str(new_date)
         },
