@@ -103,7 +103,7 @@ def add_test(service, task):
     if len(response_events["items"]) != 0:
         for item in response_events["items"]:
             # If event exists, adding = False
-            if item["summary"] == task.text and item["description"] == task.desc:
+            if item["summary"] == task.text:
                 adding = False
 
     if adding:
